@@ -4,13 +4,16 @@
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+The application works like as stock tracker. It contains different dart documents that generate communication with the Alpha Vantage API and receive data in real time. 
 
-A few resources to get you started if this is your first Flutter project:
+As main screens I have a class that draws each Quote that the user adds and the home screen, where an Appbar is presented with the button to add new quotes. The limit is set to five, so that if the user wants to add more than this amount, the function is disabled. Due to time reasons I didn’t add any show dialog indicating that one has reached the limit.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+In the globalQuoteDisplay class I put a streamBuilder whose streamController depends on the function that makes the call to the api. Since it is about stocks, I also set a periodic timer that makes every 65 seconds (calculation proportional to the five calls that the api allows per minute and the number of quotes that the user can add) the stream is heard again, and then with the help of the streambuilder the stocks are redrawn. 
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+There is this issue with the number of api calls. A retry interceptor could be put at the end of the calls to deal with failed calls due to rate limits. For more information (https://pub.dev/packages/dio_retry).
+
+With help of the documentation of Alpha Vantages API I also enabled a search engine that receives keywords for the different existing quotes that the user wants to choose.
+
+The application saves with Shared Preferences the quotes that the user to consulted. At the same time, with a dismissible you can swipe to remove unwanted quotes.
+
+The design is unitary and minimalist.
