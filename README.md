@@ -12,6 +12,8 @@ In the globalQuoteDisplay class I put a streamBuilder whose streamController dep
 
 There is this issue with the number of api calls. A retry interceptor could be put at the end of the calls to deal with failed calls due to rate limits. For more information (https://pub.dev/packages/dio_retry).
 
+There is also another issue regarding listview builder, where each time that you make an api call and setState the builder redraws itself. Having checked different documentations, it is a known issue on Flutter and it is still being solved.
+
 With help of the documentation of Alpha Vantages API I also enabled a search engine that receives keywords for the different existing quotes that the user wants to choose.
 
 The application saves with Shared Preferences the quotes that the user to consulted. At the same time, with a dismissible you can swipe to remove unwanted quotes.
